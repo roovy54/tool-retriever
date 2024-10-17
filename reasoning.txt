@@ -1,5 +1,6 @@
-1. Analyze the query and identify the key requirements: List issues with 'blocker' severity categorized as tickets.
-2. Review the available tools and their descriptions: Identify tools related to issues or tickets.
-3. Consider the example use cases for guidance: None provided.
-4. Determine which tools are necessary to fulfill the query: 'works_list' and 'summarize_objects' or 'prioritize_objects' could be used.
-5. For each selected tool, identify the required arguments based on the query: For 'works_list', we need to filter by 'ticket_severity' as 'blocker' and 'type' as 'ticket'. For 'summarize_objects' or 'prioritize_objects', we need a list of objects to summarize or prioritize, which can be obtained from 'works_list'.
+1. Analyze the query and identify the key requirements.
+2. The query is to summarize tickets from the 'support' channel.
+3. Review the available tools and their descriptions.
+4. The tool 'works_list' seems relevant as it returns a list of work items matching the request.
+5. We need to filter the list to only include tickets from the 'support' channel.
+6. We use the 'summarize_objects' tool to summarize the list of tickets.

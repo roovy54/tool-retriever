@@ -37,6 +37,11 @@ Please think through this step-by-step and provide your response strictly in the
   ]
 }}
 
+Important notes:
+1. If you need to use the output of a previous tool as input for another tool, use the format "$$PREV[i]", where i is the index of the previous tool (0-based). Example: if there was a need to use the first tool it is "$$PREV[0]"
+2. If the query cannot be solved using existing tools, provide an empty JSON object as the output: {{"output": []}}.
+3. Focus only on solving what is explicitly given in the query. Do not add extra steps or solve anything not directly requested.
+
 Ensure that your response is a valid JSON object with "reasoning" and "output" keys, and nothing else.
 """,
 )
@@ -103,6 +108,11 @@ Please provide your response in the following JSON format without any additional
     }}
   ]
 }}
+
+Important notes:
+1. If you need to use the output of a previous tool as input for another tool, use the format "$$PREV[i]", where i is the index of the previous tool (0-based).
+2. If the query cannot be solved using existing tools, provide an empty JSON array as the output: {{"output": []}}.
+3. Focus only on solving what is explicitly given in the query. Do not add extra steps or solve anything not directly requested.
 
 Ensure that your response is a valid JSON object with "thought_tree", "selected_path", and "output" keys, and nothing else.
 """,

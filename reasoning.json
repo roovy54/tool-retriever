@@ -2,28 +2,32 @@
   {
     "branch": 1,
     "thoughts": [
-      "1. Use 'works_list' tool to list issues with 'blocker' severity",
-      "2. Filter the results to get only tickets",
-      "3. Use 'summarize_objects' tool to summarize the list of tickets"
+      "1. Use get_sprint_id to get current sprint, but it's not needed for this query.",
+      "2. Use who_am_i to get current user, but it's not needed for this query.",
+      "3. Use works_list to get tickets from 'support' channel. It requires ticket_source_channel argument."
     ],
-    "evaluation": "This path seems promising as it directly addresses the query, but may require multiple tool calls"
+    "evaluation": "Most promising path, as it directly uses the required arguments."
   },
   {
     "branch": 2,
     "thoughts": [
-      "1. Use 'ticket_severity' argument in 'works_list' tool to get tickets with 'blocker' severity",
-      "2. Use 'type' argument to filter for only tickets",
-      "3. Prioritize the tickets using 'prioritize_objects' tool"
+      "1. Use search_object_by_name to search for 'support' channel, but it might return unexpected results.",
+      "2. Use summarize_objects to summarize the results, but it requires a list of objects."
     ],
-    "evaluation": "This path seems efficient as it uses a single tool call, but may not be as flexible as the first path"
+    "evaluation": "Less promising path, as it might return unexpected results."
   },
   {
     "branch": 3,
     "thoughts": [
-      "1. Search for tickets with 'blocker' severity using 'search_object_by_name' tool",
-      "2. Use the resulting ticket IDs to get the tickets using 'works_list' tool",
-      "3. Summarize the list of tickets using 'summarize_objects' tool"
+      "1. Use create_actionable_tasks_from_text to extract actionable insights, but it requires text input."
     ],
-    "evaluation": "This path seems more complex and may not be as efficient, but could be useful if the search tool is powerful"
+    "evaluation": "Not promising path, as it's not related to the query."
+  },
+  {
+    "branch": 4,
+    "thoughts": [
+      "1. Use prioritize_objects to prioritize tickets, but it's not needed for this query."
+    ],
+    "evaluation": "Not promising path, as it's not related to the query."
   }
 ]

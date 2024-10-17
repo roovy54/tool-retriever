@@ -3,12 +3,8 @@
     "tool_name": "works_list",
     "arguments": [
       {
-        "argument_name": "ticket_severity",
-        "argument_value": "blocker"
-      },
-      {
-        "argument_name": "type",
-        "argument_value": "ticket"
+        "argument_name": "ticket_source_channel",
+        "argument_value": "support"
       }
     ]
   },
@@ -17,7 +13,7 @@
     "arguments": [
       {
         "argument_name": "objects",
-        "argument_value": "output from works_list"
+        "argument_value": "$$PREV[0]"
       }
     ]
   }
