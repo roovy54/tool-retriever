@@ -1,0 +1,24 @@
+[
+  {
+    "tool_name": "works_list",
+    "arguments": [
+      {
+        "argument_name": "ticket_severity",
+        "argument_value": "blocker"
+      },
+      {
+        "argument_name": "type",
+        "argument_value": "ticket"
+      }
+    ]
+  },
+  {
+    "tool_name": "summarize_objects",
+    "arguments": [
+      {
+        "argument_name": "objects",
+        "argument_value": "output from works_list"
+      }
+    ]
+  }
+]
