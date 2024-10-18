@@ -3,17 +3,18 @@
     "tool_name": "works_list",
     "arguments": [
       {
-        "argument_name": "ticket_source_channel",
-        "argument_value": "support"
-      }
-    ]
-  },
-  {
-    "tool_name": "summarize_objects",
-    "arguments": [
+        "argument_name": "created_by",
+        "argument_value": [
+          "DEVU-123",
+          "DEVU-456"
+        ]
+      },
       {
-        "argument_name": "objects",
-        "argument_value": "$$PREV[0]"
+        "argument_name": "type",
+        "argument_value": [
+          "issue",
+          "task"
+        ]
       }
     ]
   }

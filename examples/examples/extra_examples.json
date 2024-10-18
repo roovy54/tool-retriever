@@ -1,0 +1,352 @@
+[
+    {
+        "query": "List work items owned by 'DEVU-789’ needing response for organization ’REV-654’",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "owned_by",
+                        "argument_value": [
+                            "DEVU-789"
+                        ]
+                    },
+                    {
+                        "argument_name": "ticket_need_response",
+                        "argument_value": true
+                    },
+                    {
+                        "argument_name": "ticket_rev_org",
+                        "argument_value": [
+                            "REV-654"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "List issues with ’blocker’ severity categorized as tickets",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "ticket_severity",
+                        "argument_value": [
+                            "blocker"
+                        ]
+                    },
+                    {
+                        "argument_name": "type",
+                        "argument_value": [
+                            "ticket"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Find issues or tasks created by users ’DEVU-123’ or ’DEVU-456’",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "created_by",
+                        "argument_value": [
+                            "DEVU-123",
+                            "DEVU-456"
+                        ]
+                    },
+                    {
+                        "argument_name": "type",
+                        "argument_value": [
+                            "issue",
+                            "task"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Fetch ’p3’ priority work items that need customer response for ’REV-333’",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "issue.priority",
+                        "argument_value": [
+                            "p3"
+                        ]
+                    },
+                    {
+                        "argument_name": "ticket_need_response",
+                        "argument_value": true
+                    },
+                    {
+                        "argument_name": "ticket_rev_org",
+                        "argument_value": [
+                            "REV-333"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "list their high-severity tickets for ’Globex’ user",
+        "solution":
+        [
+            {
+                "tool_name": "search_object_by_name",
+                "arguments": [
+                    {
+                        "argument_name": "query",
+                        "argument_value": "Globex"
+                    }
+                ]
+            },
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "created_by",
+                        "argument_value": "$$PREV[0]"
+                    },
+                    {
+                        "argument_name": "ticket_severity",
+                        "argument_value": [
+                            "high"
+                        ]
+                    },
+                    {
+                        "argument_name": "type",
+                        "argument_value": [
+                            "ticket"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Summarize tickets from ’support’ channel",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "ticket_source_channel",
+                        "argument_value": [
+                            "support"
+                        ]
+                    },
+                    {
+                        "argument_name": "type",
+                        "argument_value": [
+                            "ticket"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tool_name": "summarize_objects",
+                "arguments": [
+                    {
+                        "argument_name": "objects",
+                        "argument_value": "$$PREV[0]"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Prioritize tasks for part ’ENH-789’",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "applies_to_part",
+                        "argument_value": [
+                            "ENH-789"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tool_name": "prioritize_objects",
+                "arguments": [
+                    {
+                        "argument_name": "objects",
+                        "argument_value": "$$PREV[0]"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Fetch ’medium’ severity work items in ’QA Review’ or ’Testing’",
+        "solution":
+        [
+            {
+                "tool_name": "works_list",
+                "arguments": [
+                    {
+                        "argument_name": "ticket_severity",
+                        "argument_value": [
+                            "medium"
+                        ]
+                    },
+                    {
+                        "argument_name": "stage_name",
+                        "argument_value": [
+                            "QA Review",
+                            "Testing"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Assign ’TASK-123’ and ’TASK-456’ to ’DEVU-999’ and sync with their calendar",
+        "solution":
+        [
+            {
+                "tool_name": "assign_work_items",
+                "arguments": [
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "TASK-123",
+                            "TASK-456"
+                        ]
+                    },
+                    {
+                        "argument_name": "user_id",
+                        "argument_value": "DEVU-999"
+                    }
+                ]
+            },
+            {
+                "tool_name": "sync_work_items_with_calendar",
+                "arguments": [
+                    {
+                        "argument_name": "user_id",
+                        "argument_value": "DEVU-999"
+                    },
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "TASK-123",
+                            "TASK-456"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Check dependencies for ’FEAT-123’ and ’BUG-987’ then add to sprint",
+        "solution":
+        [
+            {
+                "tool_name": "validate_work_dependency",
+                "arguments": [
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "FEAT-123",
+                            "BUG-987"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tool_name": "get_sprint_id",
+                "arguments": []
+            },
+            {
+                "tool_name": "add_work_items_to_sprint",
+                "arguments": [
+                    {
+                        "argument_name": "work_ids",
+                        "argument_value": [
+                            "FEAT-123",
+                            "BUG-987"
+                        ]
+                    },
+                    {
+                        "argument_name": "sprint_id",
+                        "argument_value": "$$PREV[1]"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "query": "Assign validated ’TASK-789’ and ’ISSUE-321’ to current user and sync with calendar",
+        "solution":
+        [
+            {
+                "tool_name": "who_am_i",
+                "arguments": []
+            },
+            {
+                "tool_name": "validate_work_dependency",
+                "arguments": [
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "TASK-789",
+                            "ISSUE-321"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tool_name": "assign_work_items",
+                "arguments": [
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "TASK-789",
+                            "ISSUE-321"
+                        ]
+                    },
+                    {
+                        "argument_name": "user_id",
+                        "argument_value": "$$PREV[0]"
+                    }
+                ]
+            },
+            {
+                "tool_name": "sync_work_items_with_calendar",
+                "arguments": [
+                    {
+                        "argument_name": "user_id",
+                        "argument_value": "$$PREV[0]"
+                    },
+                    {
+                        "argument_name": "work_item_ids",
+                        "argument_value": [
+                            "TASK-789",
+                            "ISSUE-321"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

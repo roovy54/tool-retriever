@@ -1,0 +1,2 @@
+1. Due to recent developments in the LLM world its context window made retrieval not so useful. Our pipeline has retriever keeping in mind that the toolset might increase in size and eventually pass the context window and also it will improve the quality of outputs.
+2. 

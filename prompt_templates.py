@@ -1,12 +1,15 @@
 from langchain.prompts import PromptTemplate
 
-# Define the cot prompt template
+# Updated CoT prompt template
 CoT_prompt_template = PromptTemplate(
-    input_variables=["query", "tools", "examples"],
+    input_variables=["query", "tools_context", "tools", "examples"],
     template="""
-You are an AI assistant tasked with determining the appropriate tools and their arguments to solve a given query. You have access to a set of tools and example use cases. Please analyze the query and provide a step-by-step reasoning to determine which tools to use and how to use them.
+You are an AI assistant tasked with determining the appropriate tools and their arguments to solve a given query. You have access to a set of tools and their descriptions. Please analyze the query and provide a step-by-step reasoning to determine which tools to use and how to use them.
 
 Query: {query}
+
+Tool Descriptions:
+{tools_context}
 
 Available Tools:
 {tools}
@@ -39,20 +42,25 @@ Please think through this step-by-step and provide your response strictly in the
 
 Important notes:
 1. If you need to use the output of a previous tool as input for another tool, use the format "$$PREV[i]", where i is the index of the previous tool (0-based). Example: if there was a need to use the first tool it is "$$PREV[0]"
-2. If the query cannot be solved using existing tools, provide an empty JSON object as the output: {{"output": []}}.
+2. If the query cannot be solved using existing tools, provide an empty JSON array as the output: {{"output": []}}.
 3. Focus only on solving what is explicitly given in the query. Do not add extra steps or solve anything not directly requested.
+4. For argument values that are arrays, provide them directly without using numbered keys.
+5. Ensure that the "arguments" field is an array of objects, each containing "argument_name" and "argument_value" keys.
 
 Ensure that your response is a valid JSON object with "reasoning" and "output" keys, and nothing else.
 """,
 )
 
-# Define the tot prompt template
+# Updated ToT prompt template
 ToT_prompt_template = PromptTemplate(
-    input_variables=["query", "tools", "examples"],
+    input_variables=["query", "tools_context", "tools", "examples"],
     template="""
 You are an AI assistant using the Tree of Thoughts strategy to solve queries with available tools. Analyze the query, generate multiple thought branches, evaluate them, and select the most promising path.
 
 Query: {query}
+
+Tool Descriptions:
+{tools_context}
 
 Available Tools:
 {tools}
@@ -99,12 +107,9 @@ Please provide your response in the following JSON format without any additional
   "output": [
     {{
       "tool_name": "tool_name_here",
-      "arguments": [
-        {{
-          "argument_name": "arg_name_here",
-          "argument_value": "arg_value_here"
-        }}
-      ]
+      "arguments": {{
+        "argument_name": "arg_value_here"
+      }}
     }}
   ]
 }}
@@ -113,6 +118,7 @@ Important notes:
 1. If you need to use the output of a previous tool as input for another tool, use the format "$$PREV[i]", where i is the index of the previous tool (0-based).
 2. If the query cannot be solved using existing tools, provide an empty JSON array as the output: {{"output": []}}.
 3. Focus only on solving what is explicitly given in the query. Do not add extra steps or solve anything not directly requested.
+4. For argument values that are arrays, provide them directly without using numbered keys.
 
 Ensure that your response is a valid JSON object with "thought_tree", "selected_path", and "output" keys, and nothing else.
 """,

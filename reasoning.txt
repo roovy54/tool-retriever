@@ -1,6 +1,7 @@
 1. Analyze the query and identify the key requirements.
-2. The query is to summarize tickets from the 'support' channel.
-3. Review the available tools and their descriptions.
-4. The tool 'works_list' seems relevant as it returns a list of work items matching the request.
-5. We need to filter the list to only include tickets from the 'support' channel.
-6. We use the 'summarize_objects' tool to summarize the list of tickets.
+2. Review the available tools and their descriptions.
+3. The query requires finding issues or tasks created by users 'DEVU-123' or 'DEVU-456'.
+4. The available tools suggest that the 'works_list' tool is a suitable choice to fulfill the query.
+5. The 'works_list' tool requires the 'created_by' argument to filter for work created by the specified users.
+6. The 'type' argument is also required to filter for issues and tasks.
+7. Determine that the 'created_by' argument should be used with the values 'DEVU-123' and 'DEVU-456', and the 'type' argument should be used with the values 'issue' and 'task'.
