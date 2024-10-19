@@ -8,9 +8,19 @@ This is the repository of Team 3 of AI Guild.
 - ``` bash
    cd tool_retriever
    ```
+  Create a .env file in the root directory to store the Groq API Key
+- ```bash
+   touch .env
+  ```
+  Add the following line to the file.
+- ```makefile
+  GROQ_API_KEY="your_api_key"
+  ```
+  Install all requirements either in virtual environment or local machine.
 - ``` bash 
   pip3 install -r requirements.txt
   ```
+  Run the below script to load the model.
 - ``` bash
   python3 model-1.py
   ```
